@@ -7,10 +7,8 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 // SETTINGS
-// app.use(express.static(path.join(__dirname, './static')));
+app.use(express.static(__dirname + '/public/dist/public'));
 app.use(bodyParser.json()); 
-app.set('views', path.join(__dirname, './views'));
-app.set('view engine', 'ejs');
 app.use(flash());
 app.use(session({
     secret: 'keyboardkitteh',
