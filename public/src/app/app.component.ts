@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
 
 @Component({
@@ -8,5 +8,18 @@ import { HttpService } from './http.service';
 })
 export class AppComponent {
   title = 'MEAN';
+  tasks: object = [];
   constructor(private httpService: HttpService) {}
+
+  ngOnInit() {
+    this.getTasksFromService();
+  }
+
+  getTasksFromService(){
+    let observable = this.httpService.allTasks();
+    observable.subscribe(data => {
+      console.log("Got our data", data);
+      this.tasks = data;
+    });
+  }
 }
