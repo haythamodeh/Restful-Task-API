@@ -1,25 +1,10 @@
-// DEPENDICIES
-var express = require('express');
-var session = require('express-session');
-const flash = require('express-flash');
-var app = express();
-var bodyParser = require('body-parser');
-var path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const PORT = 8000;
+const app = express();
 
-// SETTINGS
 app.use(express.static(__dirname + '/public/dist/public'));
 app.use(bodyParser.json()); 
-app.use(flash());
-app.use(session({
-    secret: 'keyboardkitteh',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000 }
-}))
-
-// Setting our Server to Listen on Port: 8000
-const PORT = 8000
 app.listen(PORT, () => console.log("listening on port " + PORT))
-
-
 require("./backend/routes")(app);
