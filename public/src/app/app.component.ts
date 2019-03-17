@@ -9,11 +9,12 @@ import { HttpService } from './http.service';
 export class AppComponent {
   title = 'MEAN';
   tasks: object = [];
+  oneTask: object = [];
   constructor(private httpService: HttpService) {}
 
-  ngOnInit() {
-    this.getTasksFromService();
-  }
+  // ngOnInit() {
+  //   this.getTasksFromService();
+  // }
 
   getTasksFromService(){
     let observable = this.httpService.allTasks();
@@ -22,4 +23,20 @@ export class AppComponent {
       this.tasks = data;
     });
   }
+  getTask(id: any) {
+    let observable = this.httpService.getTask(id);
+    observable.subscribe(data => {
+      console.log("got one data", data);
+      this.oneTask = data;
+    })
+  }
+  // onButtonClickParam(num: Number): void { 
+  //   console.log(`Click event is working with num param: ${num}`);
+  // }
+  // onButtonClickParams(num: Number, str: String): void { 
+  //     console.log(`Click event is working with num param: ${num} and str param: ${str}`);
+  // }
+  // onButtonClickEvent(event: any): void { 
+  //     console.log(`Click event is working with event: ${event}`);
+  // }
 }

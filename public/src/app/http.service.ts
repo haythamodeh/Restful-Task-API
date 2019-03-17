@@ -10,10 +10,10 @@ export class HttpService {
     // let tempObservable = this.http.get("/api/tasks");
     // tempObservable.subscribe(data => console.log("Got our tasks!", data));
   }
-  getTask() {
-    var id: any = "5c89a9ef91d28f0bedc40f61";
-    let tempObservable = this.http.get("/api/tasks/" + id);
-    tempObservable.subscribe(data => console.log("Got one task!", data));
+  getTask(id: any) {
+    // var id: any = "5c89a9ef91d28f0bedc40f61";
+    return this.http.get("/api/tasks/" + id);
+    // tempObservable.subscribe(data => console.log("Got one task!", data));
   }
   deleteTask() {
     var id: any = "5c89a9ef91d28f0bedc40f61";
